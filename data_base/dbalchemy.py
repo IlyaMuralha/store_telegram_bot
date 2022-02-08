@@ -1,7 +1,9 @@
 
 
 class Singletone(type):
-
+    '''
+    Паттерн проектирования который позволяет создать один и только один объект класса
+    '''
     def __init__(cls, name, bases, attrs, **kwargs):
         super().__init__(name, bases, attrs)
         cls.__instance = None

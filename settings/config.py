@@ -1,15 +1,24 @@
 import os
 # импортируем модуль emoji для отображения эмоджи
 from emoji import emojize
+from environs import Env
 
+env = Env()
+env.read_env()
+
+# Тут у нас будет список из админов
+ADMINS = env.list("ADMINS")
+# Тоже str, но для айпи адреса хоста
+IP = env.str("IP")
 # токен выдается при регистрации приложения
-TOKEN = ''
+# Забираем значение типа str
+TOKEN = env.str("BOT_TOKEN")
 # название БД
 NAME_DB = 'products.sqlite'
 # версия приложения
 VERSION = '0.0.1'
 # автор приложния
-AUTHOR = 'User'
+AUTHOR = 'Muralha'
 
 # родительская директория
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
