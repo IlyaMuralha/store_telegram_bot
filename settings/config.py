@@ -1,6 +1,7 @@
 import os
 # импортируем модуль emoji для отображения эмоджи
-from emoji import emojize
+# from emoji import emojize
+from emoji.core import emojize
 from environs import Env
 
 env = Env()
