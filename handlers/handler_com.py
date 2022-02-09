@@ -1,5 +1,6 @@
 # импортируем класс родитель
 from handlers.handler import Handler
+from settings import config
 
 
 class HandlerCommands(Handler):

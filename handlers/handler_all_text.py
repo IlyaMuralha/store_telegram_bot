@@ -13,6 +13,16 @@ class HandlerAllText(Handler):
         # шаг в заказе
         self.step = 0
 
+    def pressed_btn_category(self, message):
+        '''
+        обработчик сообщений от нажатия на кнопку choose product
+        :param message:
+        '''
+        self.bot.send_message(message.chat.id, "Каталог категорий товара",
+                              reply_markup=self.keyboards.remove_menu())
+        self.bot.send_message(message.chat.id, "Сделайте свой выбор",
+                              reply_markup=self.keyboards.category_menu())
+
     def pressed_btn_info(self, message):
         '''
         обработчик сообщений от нажатия на кнопку инфо
@@ -46,9 +56,14 @@ class HandlerAllText(Handler):
 
         @self.bot.message_handler(func=lambda message: True)
         def handle(message):
+            # **********menu********** #
+            if message.text == config.KEYBOARD['CHOOSE_GOODS']:
+                self.pressed_btn_category(message)
             if message.text == config.KEYBOARD['INFO']:
                 self.pressed_btn_info(message)
             if message.text == config.KEYBOARD['SETTINGS']:
                 self.pressed_btn_settings(message)
             if message.text == config.KEYBOARD['<<']:
                 self.pressed_btn_back(message)
+
+            # **********menu category********** #
