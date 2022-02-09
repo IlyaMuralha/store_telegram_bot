@@ -31,3 +31,23 @@ class Keyboards:
         self.markup.row(info_btn, setting_btn)
         return self.markup
 
+    def info_menu(self):
+        '''
+        метод создаёт и возвращает разметку кнопок для команды "info"
+        '''
+        self.markup = ReplyKeyboardMarkup(True, True)
+        back_btn = self.set_btn('<<')
+        # расположение кнопок в меню
+        self.markup.row(back_btn)
+        return self.markup
+
+    def settings_menu(self):
+        '''
+        метод создаёт и возвращает разметку кнопок для команды "settings"
+        '''
+        self.markup = ReplyKeyboardMarkup(True, True)
+        back_btn = self.set_btn('<<')
+        # расположение кнопок в меню
+        self.markup.row(back_btn)
+        return self.markup
+
