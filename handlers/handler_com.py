@@ -17,7 +17,7 @@ class HandlerCommands(Handler):
         :param message:
         '''
         self.bot.send_message(message.chat.id,
-                              f'{message.from_user.first_name}',
+                              f'{message.from_user.first_name},'
                               f'Здравствуйте, выберете команду!',
                               reply_markup=self.keyboards.start_menu())
 

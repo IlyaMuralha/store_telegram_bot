@@ -1,6 +1,6 @@
 import abc
 
-from dbalchemy import DBManager
+from data_base.dbalchemy import DBManager
 from markup.markup import Keyboards
 
 
@@ -12,7 +12,7 @@ class Handler(metaclass=abc.ABCMeta):
         # инициализируем разметку кнопок
         self.keyboards = Keyboards()
         # инициализируем менеджер для работы с БД
-        self.BD = DBManager()
+        self.DB = DBManager()
 
     @abc.abstractmethod
     def handle(self):

@@ -1,6 +1,5 @@
 import os
 # импортируем модуль emoji для отображения эмоджи
-# from emoji import emojize
 from emoji.core import emojize
 from environs import Env
 
@@ -15,7 +14,7 @@ IP = env.str("IP")
 # Забираем значение типа str
 TOKEN = env.str("BOT_TOKEN")
 # название БД
-NAME_DB = 'products.sqlite'
+NAME_DB = 'products.db'
 # версия приложения
 VERSION = '0.0.1'
 # автор приложния

@@ -1,10 +1,12 @@
 from sqlalchemy import Column, Integer, Float, String, Boolean, ForeignKey
 # импортируем модуль для связки таблиц
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
+
+from data_base.db_core import Base
 from models.category import Category
 
-Base = declarative_base()
+# Base = declarative_base()
 
 
 class Products(Base):

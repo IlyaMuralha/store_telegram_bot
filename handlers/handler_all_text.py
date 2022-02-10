@@ -49,6 +49,17 @@ class HandlerAllText(Handler):
         self.bot.send_message(message.chat.id, "Вы вернулись назад",
                               reply_markup=self.keyboards.start_menu())
 
+    def pressed_btn_product(self, message, product):
+        '''
+        обработчик сообщений от нажатия на кнопку каталога товаров
+        :param message:
+        :param product
+        '''
+        self.bot.send_message(message.chat.id, "Категория " + config.KEYBOARD[product],
+                              reply_markup=self.keyboards.set_select_category(config.CATEGORY[product]))
+        self.bot.send_message(message.chat.id, "Ok",
+                              reply_markup=self.keyboards.category_menu())
+
     def handle(self):
         '''
         обоаботчик(декоратор) сообщений для входящих команд
@@ -67,3 +78,9 @@ class HandlerAllText(Handler):
                 self.pressed_btn_back(message)
 
             # **********menu category********** #
+            if message.text == config.KEYBOARD['SEMIPRODUCT']:
+                self.pressed_btn_product(message, 'SEMIPRODUCT')
+            if message.text == config.KEYBOARD['GROCERY']:
+                self.pressed_btn_product(message, 'GROCERY')
+            if message.text == config.KEYBOARD['ICE_CREAM']:
+                self.pressed_btn_product(message, 'ICE_CREAM')
