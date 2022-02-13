@@ -146,14 +146,6 @@ class DBManager(metaclass=Singletone):
         self.close()
         return result.price
 
-    # def select_order_quantity(self, product_id):
-    #     '''
-    #     возвращает колличество товара в заказе
-    #     '''
-    #     result = self._session.query(Order.quantity).filter_by(product_id=product_id).one()
-    #     self.close()
-    #     return result.quantity
-
     def count_rows_order(self):
         '''
         возвращает колличество позиций в заказе
@@ -161,3 +153,11 @@ class DBManager(metaclass=Singletone):
         result = self._session.query(Order).count()
         self.close()
         return result
+
+    def delete_order(self, product_id):
+        '''
+        удаляет данные указанного заказа
+        '''
+        self._session.query(Order).filter_by(product_id=product_id).delete()
+        self._session.commit()
+        self.close()
