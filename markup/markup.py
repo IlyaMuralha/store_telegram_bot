@@ -85,3 +85,26 @@ class Keyboards:
             self.markup.add(self.set_inline_btn(itm))
 
         return self.markup
+
+    def orders_menu(self, step, quantity):
+        '''
+        метод создаёт и возвращает разметку кнопок для команды "заказ"
+        '''
+        self.markup = ReplyKeyboardMarkup(True, True)
+        itm_btn_cancel_order = self.set_btn('X', step, quantity)
+        itm_btn_down = self.set_btn('DOWN', step, quantity)
+        itm_btn_amount_product = self.set_btn('AMOUNT_PRODUCT', step, quantity)
+        itm_btn_up = self.set_btn('UP', step, quantity)
+
+        itm_btn_back_step = self.set_btn('BACK_STEP', step, quantity)
+        itm_btn_amount_orders = self.set_btn('AMOUNT_ORDERS', step, quantity)
+        itm_btn_next_step = self.set_btn('NEXT_STEP', step, quantity)
+        itm_btn_back = self.set_btn('<<', step, quantity)
+        itm_btn_pay = self.set_btn('APPLAY', step, quantity)
+
+        self.markup.row(itm_btn_cancel_order, itm_btn_down, itm_btn_amount_product, itm_btn_up)
+        self.markup.row(itm_btn_back_step, itm_btn_amount_orders, itm_btn_next_step)
+        self.markup.row(itm_btn_back, itm_btn_pay)
+
+        return self.markup
+
