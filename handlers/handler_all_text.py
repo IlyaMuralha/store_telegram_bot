@@ -1,5 +1,5 @@
 from handlers.handler import Handler
-from settings import config
+from settings import config, utility
 from settings.message import MESSAGES
 
 
@@ -181,6 +181,18 @@ class HandlerAllText(Handler):
         # отправляем ответ пользователю
         self.send_message_order(count[self.step], quantity_order, message)
 
+    def pressed_btn_pay(self, message):
+        '''
+        обрабатывает сообщения от нажатия на кнопку APPLAY
+        '''
+        self.bot.send_message(message.chat.id,
+                              MESSAGES['applay'].format(
+                                  utility.get_total_coast(self.DB),
+                                  utility.get_total_quantity(self.DB)
+                              ), parse_mode='HTML', reply_markup=self.keyboards.category_menu())
+        # отчищаем данные из заказа
+        self.DB.delete_all_order()
+
     def handle(self):
         '''
         обоаботчик(декоратор) сообщений для входящих команд
@@ -226,3 +238,8 @@ class HandlerAllText(Handler):
                 self.pressed_btn_back_step(message)
             if message.text == config.KEYBOARD['NEXT_STEP']:
                 self.pressed_btn_next_step(message)
+            if message.text == config.KEYBOARD['APPLAY']:
+                self.pressed_btn_pay(message)
+
+            else:
+                self.bot.send_message(message.chat.id, message.text)

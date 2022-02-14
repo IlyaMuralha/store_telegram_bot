@@ -156,8 +156,23 @@ class DBManager(metaclass=Singletone):
 
     def delete_order(self, product_id):
         '''
-        удаляет данные указанного заказа
+        удаляет данные указанной позиции заказа
         '''
         self._session.query(Order).filter_by(product_id=product_id).delete()
         self._session.commit()
         self.close()
+
+    def delete_all_order(self):
+        '''
+        удаляет данные всего заказа
+        '''
+        all_id_orders = self.select_all_id_order()
+        for itm in all_id_orders:
+            self._session.query(Order).filter_by(id=itm).delete()
+            self._session.commit()
+        self.close()
+
+    def select_all_id_order(self):
+        result = self._session.query(Order.id).all()
+        self.close()
+        return utility._convert(result)
